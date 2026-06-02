@@ -19,12 +19,13 @@ export default function Chat({ resumeData }) {
   }, [messages])
 
   const suggestions = [
-    "What jobs suit me best?",
-    "How do I improve my ATS score?",
-    "What skills should I learn next?",
-    "Write me a cover letter",
-    "How do I prepare for interviews?"
-  ]
+  "What specific jobs suit my skills?",
+  "Which companies should I apply to?",
+  "What skills should I learn next?",
+  "Write a cover letter for ML Engineer role",
+  "How do I crack a data science interview?",
+  "How can I improve my ATS score?"
+]
 
   const send = async (text) => {
     const msg = text || input.trim()
