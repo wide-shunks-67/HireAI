@@ -1,16 +1,16 @@
-# Environment files
+
 backend/.env
 .env
 
-# Python
+
 __pycache__/
 *.pyc
 .venv/
 venv/
 
-# Node
+
 node_modules/
 frontend/node_modules/
 
-# Build
+
 frontend/dist/

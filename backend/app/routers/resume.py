@@ -20,7 +20,7 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
     return text
 
 def parse_resume_with_gemini(resume_text: str) -> dict:
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    model = genai.GenerativeModel("gemini-3.5-flash")
     prompt = f"""
     Analyze this resume and extract information in JSON format only.
     Return ONLY valid JSON, no extra text.

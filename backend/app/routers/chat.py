@@ -15,7 +15,7 @@ class ChatRequest(BaseModel):
 @router.post("/message")
 async def chat(req: ChatRequest):
     try:
-        model = genai.GenerativeModel("gemini-2.5-flash")
+        model = genai.GenerativeModel("gemini-3.5-flash")
 
         resume_context = ""
         if req.resume_data:
