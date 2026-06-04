@@ -6,7 +6,6 @@
 
 ---
 
-## Screenshots
 
 | Resume Analysis | AI Career Coach | Job Matching |
 |---|---|---|
