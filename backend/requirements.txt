@@ -3,7 +3,11 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 python-dotenv
-passlib[bcrypt]
 python-jose[cryptography]
 pydantic[email]
+pydantic-settings
 alembic
+bcrypt
+google-generativeai
+pdfplumber
+httpx
