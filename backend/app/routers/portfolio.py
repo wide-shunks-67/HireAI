@@ -25,11 +25,11 @@ def generate_portfolio(data: PortfolioCreate, db: Session = Depends(get_db)):
     if existing:
         existing.resume_data = data.resume_data
         db.commit()
-        return {"success": True, "slug": slug, "url": f"/portfolio/view/{slug}"}
+        return {"success": True, "slug": slug, "url": f"https://hireai-n00h.onrender.com/portfolio/view/{slug}"}
     portfolio = Portfolio(slug=slug, user_email=data.email, resume_data=data.resume_data)
     db.add(portfolio)
     db.commit()
-    return {"success": True, "slug": slug, "url": f"/portfolio/view/{slug}"}
+    return {"success": True, "slug": slug, "url": f"https://hireai-n00h.onrender.com/portfolio/view/{slug}"}
 
 @router.get("/view/{slug}", response_class=HTMLResponse)
 def view_portfolio(slug: str, db: Session = Depends(get_db)):
