@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import api from './api/axios'
 import Dashboard from './pages/Dashboard'
 
@@ -8,6 +8,14 @@ export default function App() {
   const [error, setError] = useState('')
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const email = localStorage.getItem('userEmail')
+    if (token && email) {
+      setUser(email)
+    }
+  }, [])
 
   const handle = e => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -23,6 +31,7 @@ export default function App() {
           email: form.email, password: form.password
         })
         localStorage.setItem('token', res.data.access_token)
+        localStorage.setItem('userEmail', form.email)
         setUser(form.email)
       }
     } catch (e) {
@@ -31,12 +40,21 @@ export default function App() {
     setLoading(false)
   }
 
-  if (user) return <Dashboard user={user} onLogout={() => setUser(null)} />
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userEmail')
+    setUser(null)
+    setForm({ email: '', full_name: '', password: '' })
+  }
+
+  if (user) return <Dashboard user={user} onLogout={handleLogout} />
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 w-full max-w-md">
-        <div className="flex items-center gap-2 mb-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-gray-100 flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 w-full max-w-md">
+
+        {/* Logo */}
+        <div className="flex items-center gap-2 mb-6">
           <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
             <span className="text-white text-sm font-bold">H</span>
           </div>
@@ -62,16 +80,17 @@ export default function App() {
           {page === 'register' && (
             <input name="full_name" placeholder="Full name"
               value={form.full_name} onChange={handle}
-              className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition"
+              className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition w-full"
             />
           )}
           <input name="email" placeholder="Email address" type="email"
             value={form.email} onChange={handle}
-            className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition"
+            className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition w-full"
           />
           <input name="password" placeholder="Password" type="password"
             value={form.password} onChange={handle}
-            className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition"
+            onKeyDown={e => e.key === 'Enter' && submit()}
+            className="border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-emerald-400 transition w-full"
           />
         </div>
 

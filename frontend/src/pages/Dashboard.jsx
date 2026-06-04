@@ -54,47 +54,46 @@ export default function Dashboard({ user, onLogout }) {
     <div className="min-h-screen bg-gray-50">
 
       {/* Navbar */}
-      <nav className="bg-white border-b border-gray-100 px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-              <span className="text-white text-sm font-bold">H</span>
-            </div>
-            <span className="text-lg font-semibold text-gray-800">HireAI</span>
-          </div>
+      <nav className="bg-white border-b border-gray-100 px-4 sm:px-6 py-3 flex items-center justify-between flex-wrap gap-2">
+  <div className="flex items-center gap-2 sm:gap-6 flex-wrap">
+    {/* Logo */}
+    <div className="flex items-center gap-2">
+      <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <span className="text-white text-sm font-bold">H</span>
+      </div>
+      <span className="text-lg font-semibold text-gray-800">HireAI</span>
+    </div>
 
-          {/* Tabs */}
-          <div className="flex gap-1">
-            {[
-              { key: 'resume', label: ' Resume' },
-              { key: 'chat', label: ' AI Chat' },
-              { key: 'jobs', label: ' Jobs' },
-            ].map(tab => (
-              <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  activeTab === tab.key
-                    ? 'bg-emerald-50 text-emerald-600'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}>
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
+    {/* Tabs */}
+    <div className="flex gap-1 flex-wrap">
+      {[
+        { key: 'resume', label: 'Resume' },
+        { key: 'chat', label: 'Chat' },
+        { key: 'jobs', label: 'Jobs' },
+      ].map(tab => (
+        <button key={tab.key} onClick={() => setActiveTab(tab.key)}
+          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition ${
+            activeTab === tab.key
+              ? 'bg-emerald-50 text-emerald-600'
+              : 'text-gray-500 hover:text-gray-700'
+          }`}>
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  </div>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
-          <button onClick={generatePortfolio} disabled={portfolioLoading}
-            className="text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl hover:opacity-90 transition disabled:opacity-60 font-medium">
-            {portfolioLoading ? ' Generating...' : ' Portfolio'}
-          </button>
-          <span className="text-sm text-gray-400">{user}</span>
-          <button onClick={onLogout}
-            className="text-sm text-red-400 hover:text-red-600 transition">Logout</button>
-        </div>
-      </nav>
-
+  {/* Right side */}
+  <div className="flex items-center gap-2">
+    <button onClick={generatePortfolio} disabled={portfolioLoading}
+      className="text-xs sm:text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1.5 rounded-xl hover:opacity-90 transition disabled:opacity-60 font-medium">
+      {portfolioLoading ? '⏳' : 'Portfolio'}
+    </button>
+    <span className="text-xs sm:text-sm text-gray-400 hidden sm:block">{user}</span>
+    <button onClick={onLogout}
+      className="text-xs sm:text-sm text-red-400 hover:text-red-600 transition">Logout</button>
+  </div>
+</nav>
       {/* Portfolio banner */}
       {portfolioUrl && (
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 flex items-center justify-between">
@@ -215,7 +214,7 @@ export default function Dashboard({ user, onLogout }) {
               </div>
 
               {/* Section scores */}
-              <div className="grid grid-cols-4 gap-3 mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                 {Object.entries(resumeData.section_scores || {}).map(([key, val]) => (
                   <div key={key} className="bg-white rounded-xl border border-gray-100 p-4 text-center">
                     <div className="text-xl font-bold text-emerald-500">{val}</div>
