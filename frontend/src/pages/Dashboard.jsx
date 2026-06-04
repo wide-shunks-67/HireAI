@@ -20,7 +20,7 @@ export default function Dashboard({ user, onLogout }) {
         email: user,
         resume_data: resumeData
       })
-      setPortfolioUrl(`https://hireai-n00h.onrender.com${res.data.url}`)
+      setPortfolioUrl(res.data.url)
     } catch (e) {
       alert('Failed to generate portfolio')
     }
