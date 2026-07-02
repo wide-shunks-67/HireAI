@@ -71,7 +71,7 @@ export default function Dashboard({ user, onLogout }) {
         { key: 'resume', label: 'Resume' },
         { key: 'chat', label: 'Chat' },
         { key: 'jobs', label: 'Jobs' },
-        { key: 'tools', label: '🛠️ Tools' },
+        { key: 'tools', label: 'Tools' },
       ].map(tab => (
         <button key={tab.key} onClick={() => setActiveTab(tab.key)}
           className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition ${
