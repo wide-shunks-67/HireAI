@@ -2,6 +2,7 @@ import { useState } from 'react'
 import api from '../api/axios'
 import Chat from './Chat'
 import Jobs from './Jobs'
+import Tools from './Tools'
 
 export default function Dashboard({ user, onLogout }) {
   const [resumeData, setResumeData] = useState(null)
@@ -70,6 +71,7 @@ export default function Dashboard({ user, onLogout }) {
         { key: 'resume', label: 'Resume' },
         { key: 'chat', label: 'Chat' },
         { key: 'jobs', label: 'Jobs' },
+        { key: 'tools', label: '🛠️ Tools' },
       ].map(tab => (
         <button key={tab.key} onClick={() => setActiveTab(tab.key)}
           className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition ${
@@ -134,7 +136,9 @@ export default function Dashboard({ user, onLogout }) {
             <Chat resumeData={resumeData} />
           </div>
         </div>
-
+        /*tools tab*/
+      ) : activeTab === 'tools' ? (
+          <Tools resumeData={resumeData} />
       /* Resume Tab */
       ) : (
         <div className="max-w-4xl mx-auto px-6 py-10">

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
-from app.routers import auth, resume, chat, jobs, portfolio
+from app.routers import auth, resume, chat, jobs, portfolio, tools
 
 
 Base.metadata.create_all(bind=engine)
@@ -25,6 +25,7 @@ app.include_router(resume.router)
 app.include_router(chat.router)
 app.include_router(jobs.router)
 app.include_router(portfolio.router)
+app.include_router(tools.router)
 
 @app.get("/")
 def root():
