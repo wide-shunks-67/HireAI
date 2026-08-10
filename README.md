@@ -279,6 +279,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-<div align="center">
-Built with ❤️ using React, FastAPI, and Google Gemini AI
-</div>
+
